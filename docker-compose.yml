@@ -1,0 +1,21 @@
+version: '3'
+services:
+ web:
+   build: .
+   ports:
+     - "8002:443"
+     - "5003:80"
+   links:
+     - "mongo:database"
+ mongo:
+   image: mongo:4.2
+   volumes:
+     - mongo_data:/data/db
+   ports:
+     - "27017:27017"
+   environment:
+     MONGO_INITDB_ROOT_USERNAME: pragya
+     MONGO_INITDB_ROOT_PASSWORD: password
+volumes:
+ mongo_data:
+   driver: local
